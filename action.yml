@@ -3,19 +3,6 @@ description: "A simple action that generated Github-style badges for your docume
 
 inputs:
 
-  branch:
-    description: "The branch in your repository where badges are stored."
-    required: false
-    default: master
-
-  username:
-    description: "The GitHub username to use when committing the badges."
-    required: true
-
-  email:
-    description: "The GitHub user email address to use when committing the badges."
-    required: true
-
   directory:
     description: "The directory in your repository where badges are stored."
     required: false
@@ -33,6 +20,11 @@ inputs:
     description:  "The status of your badge (boolean). `true` generates a green bad, `false` a red badge."
     required: false
     default: true
+
+  debug:
+    description:  "A Boolean switch for debug logging."
+    required: false
+    default: false
 
 outputs:
 
