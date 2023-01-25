@@ -4173,8 +4173,8 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
     fs.writeFileSync(path, svg);
     // Check in badge
     console.log("Committing to repository..");
-    yield exec.exec("git add *");
-    yield exec.exec("git commit -m 'Updated badge " + path + "'");
+    yield exec.exec("git add --all");
+    yield exec.exec("git commit -am 'Updated badge " + path + "'");
     yield exec.exec("git push");
     // Return path to badge
     console.log("Completed.");
