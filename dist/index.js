@@ -4175,6 +4175,8 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
     fs.writeFileSync(path, content);
     // Add and commit badge
     if (branch) {
+        if (debug)
+            console.log("Committing to " + branch + "..");
         yield exec.exec("git config user.email \"badger@centipod.io\"");
         yield exec.exec("git config user.name \"badger\"");
         yield exec.exec("git add " + path);

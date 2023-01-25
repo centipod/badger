@@ -47,6 +47,7 @@ import { mkdir } from 'node:fs/promises';
     // Add and commit badge
     if (branch) {
 
+        if (debug) console.log("Committing to " + branch + "..")
         await exec.exec("git config user.email \"badger@centipod.io\"");
         await exec.exec("git config user.name \"badger\"");
         await exec.exec("git add " + path);
