@@ -15,6 +15,9 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Display file tree
+        run: tree
+
       - name: Generate green badge
         uses: centipod/badger@master
         with:

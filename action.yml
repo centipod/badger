@@ -30,7 +30,9 @@ outputs:
 
   location:
     description: "The location where the badge was generated, using format 'branch:/path/to/badge.svg'."
+    required: true
 
 runs:
   using: node16
-  main: index.js
+  main: dist/index.js
+
