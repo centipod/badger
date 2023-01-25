@@ -31,6 +31,7 @@ jobs:
           label: 'Version'
           value: 'v1.0'
           status: true
+          debug: true
 
       - name: Generate red badge
         uses: centipod/badger@master
@@ -40,3 +41,4 @@ jobs:
           label: 'Release'
           value: 'failed'
           status: false
+          debug: true
