@@ -15,9 +15,9 @@ import { mkdir } from 'node:fs/promises';
     const value = core.getInput("value");
     const status = core.getInput("status");
 
-    // Check out repository
-    console.log("Checking out repository..")
-    await exec.exec("git checkout " + branch);
+//     // Check out repository
+//     console.log("Checking out repository..")
+//     await exec.exec("git checkout " + branch);
 
     // Get color sections
     console.log("Preparing badge..")
@@ -35,19 +35,19 @@ import { mkdir } from 'node:fs/promises';
             .replace('@TIME@', '' + time);
 
     // Write to file
-    console.log("Storing badge..")
+    console.log("Storing badge with timestamo " + time + "..")
     await mkdir(directory, { recursive: true });
     const name = label.replace(/[^A-Za-z0-9]+/g, '').toLowerCase();
     const path = directory + '/' + name + '.svg';
     fs.writeFileSync(path, content);
 
-    // Check in badge
-    console.log("Committing to repository..")
+//     // Check in badge
+//     console.log("Committing to repository..")
     await exec.exec("git config user.email \"flowmastr-release-bot@centipod.nl\"");
     await exec.exec("git config user.name \"flowMastr-release-bot\"");
-    await exec.exec("git add --all");
-    await exec.exec("git commit -m \"Updated badge\"");
-    await exec.exec("git push");
+//     await exec.exec("git add --all");
+//     await exec.exec("git commit -m \"Updated badge\"");
+//     await exec.exec("git push");
 
     // Return path to badge
     console.log("Completed.")

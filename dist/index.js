@@ -4148,9 +4148,9 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
     const label = core.getInput("label");
     const value = core.getInput("value");
     const status = core.getInput("status");
-    // Check out repository
-    console.log("Checking out repository..");
-    yield exec.exec("git checkout " + branch);
+    //     // Check out repository
+    //     console.log("Checking out repository..")
+    //     await exec.exec("git checkout " + branch);
     // Get color sections
     console.log("Preparing badge..");
     const time = Date.now();
@@ -4165,18 +4165,18 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         .replace(/@VALUE@/g, value)
         .replace('@TIME@', '' + time);
     // Write to file
-    console.log("Storing badge..");
+    console.log("Storing badge with timestamo " + time + "..");
     yield (0,promises_namespaceObject.mkdir)(directory, { recursive: true });
     const name = label.replace(/[^A-Za-z0-9]+/g, '').toLowerCase();
     const path = directory + '/' + name + '.svg';
     fs.writeFileSync(path, content);
-    // Check in badge
-    console.log("Committing to repository..");
+    //     // Check in badge
+    //     console.log("Committing to repository..")
     yield exec.exec("git config user.email \"flowmastr-release-bot@centipod.nl\"");
     yield exec.exec("git config user.name \"flowMastr-release-bot\"");
-    yield exec.exec("git add --all");
-    yield exec.exec("git commit -m \"Updated badge\"");
-    yield exec.exec("git push");
+    //     await exec.exec("git add --all");
+    //     await exec.exec("git commit -m \"Updated badge\"");
+    //     await exec.exec("git push");
     // Return path to badge
     console.log("Completed.");
     core.setOutput('location', path);
