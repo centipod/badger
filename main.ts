@@ -6,6 +6,7 @@ import { mkdir } from 'node:fs/promises';
     const core = require("@actions/core");
     const exec = require("@actions/exec");
     const fs = require('fs');
+//     const path = require('path');
 
     // Inputs
     console.log("Collecting inputs..")
@@ -36,9 +37,8 @@ import { mkdir } from 'node:fs/promises';
 
     // Write to file
     console.log("Storing badge..")
-    const dir = await mkdir(directory, { recursive: true });
     const name = label.replace(/[^A-Za-z0-9]+/g, '').toLowerCase();
-    const path = dir + '/' + name + '.svg';
+    const path = directory + '/' + name + '.svg';
     fs.writeFileSync(path, svg);
 
     // Check in badge
