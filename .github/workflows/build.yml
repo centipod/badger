@@ -1,29 +1,31 @@
 name: Test badger
 
 on:
+  pull_request:
+    branches:
+      master
   workflow_dispatch:
 
 jobs:
-  generate:
+  build:
+    runs-on: ubuntu-latest
+    permissions: read-all
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install NPM
+        run: npm install
+      - name: Build and test
+        run: |
+          npm run build
+          npm run test
+  tryout:
     runs-on: ubuntu-latest
     permissions: write-all
-
     steps:
-
-      - name: Check out repository
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Display file tree
-        run: tree
-
+      - uses: actions/checkout@v3
       - name: Generate green badge
         uses: centipod/badger@master
         with:
-          branch: master
-          username: ${{ github.actor }}
-          email: badger@centipod.nl
           directory: .badges
           label: 'Version'
           value: 'v1.0'
@@ -32,9 +34,6 @@ jobs:
       - name: Generate red badge
         uses: centipod/badger@master
         with:
-          branch: master
-          username: ${{ github.actor }}
-          email: badger@centipod.nl
           directory: .badges
           label: 'Release'
           value: 'failed'
