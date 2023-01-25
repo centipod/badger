@@ -3,6 +3,11 @@ description: "A simple action that generated Github-style badges for your docume
 
 inputs:
 
+  branch:
+    description: "A branch name to push the badge to after generating."
+    required: false
+    default:
+
   directory:
     description: "The directory in your repository where badges are stored."
     required: false

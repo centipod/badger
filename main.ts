@@ -8,6 +8,7 @@ import { mkdir } from 'node:fs/promises';
     const fs = require('fs');
 
     // Inputs
+    const branch = core.getInput("master");
     const directory = core.getInput("directory");
     const label = core.getInput("label");
     const value = core.getInput("value");
@@ -44,12 +45,14 @@ import { mkdir } from 'node:fs/promises';
     fs.writeFileSync(path, content);
 
     // Add and commit badge
-    await exec.exec("git config user.email \"badger@centipod.io\"");
-    await exec.exec("git config user.name \"badger\"");
-    await exec.exec("git add " + path);
-    await exec.exec("git commit -m \"Updated badge\"");
-    await exec.exec("git push");
+    if (branch) {
 
+        await exec.exec("git config user.email \"badger@centipod.io\"");
+        await exec.exec("git config user.name \"badger\"");
+        await exec.exec("git add " + path);
+        await exec.exec("git commit -m \"Updated badge\"");
+        await exec.exec("git push origin HEAD:" + branch);
+    }
 
     // Return path to badge
     console.log("To use your badge: ![](" + path + ")")
