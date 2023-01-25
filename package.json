@@ -1,0 +1,28 @@
+{
+  "name": "badge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:centipod/badge.git",
+  "author": "Christian Schuit <christian.schuit@centipod.nl>",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.3",
+    "@actions/exec": "^1.0.3",
+    "@actions/github": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "@vercel/ncc": "^0.34.0",
+    "concurrently": "^7.5.0",
+    "prettier": "^2.0.2",
+    "typescript": "^4.8.4"
+  },
+  "scripts": {
+    "build": "concurrently 'yarn build:main' 'yarn build:post'",
+    "watch": "concurrently 'yarn build:main --watch' 'yarn build:post' --watch",
+    "build:main": "ncc build main.ts --out dist/main",
+    "watch:main": "ncc build main.ts --out dist/main --watch",
+    "build:post": "ncc build badge.ts --out dist/badge",
+    "watch:post": "ncc build badge.ts --out dist/badge --watch"
+  }
+}

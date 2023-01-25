@@ -1,0 +1,37 @@
+name: "Badge"
+description: "A simple action that generated Github-style badges for your documentation."
+
+inputs:
+
+  branch:
+    description: "The branch in your repository where badges are stored."
+    required: false
+    default: master
+
+  directory:
+    description: "The directory in your repository where badges are stored."
+    required: false
+    default: .badges
+
+  label:
+    description: "The label (left-hand side) of the badge."
+    required: true
+
+  value:
+    description: "The value (right-hand side) of the badge."
+    required: true
+
+  status:
+    description:  "The status of your badge (boolean). `true` generates a green bad, `false` a red badge."
+    required: false
+    default: true
+
+outputs:
+
+  location:
+    description: "The location where the badge was generated, using format 'branch:/path/to/badge.svg'."
+    required: true
+
+runs:
+  using: node16
+  main: index.js

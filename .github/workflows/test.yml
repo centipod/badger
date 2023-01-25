@@ -1,0 +1,34 @@
+name: Test badger
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate green badge
+        uses: centipod/badger
+        with:
+          branch: master
+          directory: .badges
+          label: 'Version'
+          value: 'v1.0'
+          status: true
+
+      - name: Generate red badge
+        uses: centipod/badger
+        with:
+          branch: master
+          directory: .badges
+          label: 'Release'
+          value: 'failed'
+          status: false
