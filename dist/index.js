@@ -4142,6 +4142,7 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
     const exec = __nccwpck_require__(514);
     const fs = __nccwpck_require__(147);
     // Inputs
+    const branch = core.getInput("master");
     const directory = core.getInput("directory");
     const label = core.getInput("label");
     const value = core.getInput("value");
@@ -4173,11 +4174,13 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         console.log("Storing badge with timestamp " + time, path);
     fs.writeFileSync(path, content);
     // Add and commit badge
-    yield exec.exec("git config user.email \"badger@centipod.io\"");
-    yield exec.exec("git config user.name \"badger\"");
-    yield exec.exec("git add " + path);
-    yield exec.exec("git commit -m \"Updated badge\"");
-    yield exec.exec("git push");
+    if (branch) {
+        yield exec.exec("git config user.email \"badger@centipod.io\"");
+        yield exec.exec("git config user.name \"badger\"");
+        yield exec.exec("git add " + path);
+        yield exec.exec("git commit -m \"Updated badge\"");
+        yield exec.exec("git push origin HEAD:" + branch);
+    }
     // Return path to badge
     console.log("To use your badge: ![](" + path + ")");
     core.setOutput('location', path);
