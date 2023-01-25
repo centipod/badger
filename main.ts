@@ -16,8 +16,8 @@ import { mkdir } from 'node:fs/promises';
     const status = core.getInput("status");
 
     // Check out repository
-     console.log("Checking out repository..")
-   await exec.exec("git checkout " + branch);
+    console.log("Checking out repository..")
+    await exec.exec("git checkout " + branch);
 
     // Get color sections
     console.log("Preparing badge..")
@@ -44,7 +44,7 @@ import { mkdir } from 'node:fs/promises';
     // Check in badge
     console.log("Committing to repository..")
     await exec.exec("git add *");
-    await exec.exec("git commit -M 'Updated badge " + path + "'");
+    await exec.exec("git commit -m 'Updated badge " + path + "'");
     await exec.exec("git push");
 
     // Return path to badge
