@@ -12,14 +12,17 @@ jobs:
     permissions: read-all
     steps:
       - uses: actions/checkout@v3
-      - run: npm install
-      - run: npm run build
-      - run: npm run test
+      - name: Install NPM
+        run: npm install
+      - name: Build and test
+        run: |
+          npm run build
+          npm run test
   tryout:
     runs-on: ubuntu-latest
     permissions: write-all
+    steps:
       - uses: actions/checkout@v3
-
       - name: Generate green badge
         uses: centipod/badger@master
         with:
