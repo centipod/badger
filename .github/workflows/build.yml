@@ -12,6 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     permissions: read-all
     steps:
+      - name: Check out PR
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          echo ${{ github.event_name }}
+          echo ${{ github.event.pull_request.head.sha }}
+      - name: Check out branch
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          echo ${{ github.event_name }}
+          echo ${{ github.ref }}
       - uses: actions/checkout@v3
       - name: Install NPM
         run: npm install
@@ -22,7 +32,16 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out PR
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          echo ${{ github.event_name }}
+          echo ${{ github.event.pull_request.head.sha }}
+      - name: Check out branch
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          echo ${{ github.event_name }}
+          echo ${{ github.ref }}
       - name: Generate green badge
         uses: centipod/badger@master
         with:
