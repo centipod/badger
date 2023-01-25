@@ -25,7 +25,7 @@ jobs:
           status: true
 
       - name: Generate red badge
-        uses: centipod/badger
+        uses: centipod/badger@master
         with:
           branch: master
           directory: .badges
