@@ -44,7 +44,7 @@ import { mkdir } from 'node:fs/promises';
     // Check in badge
     console.log("Committing to repository..")
     await exec.exec("git add --all");
-    await exec.exec("git commit -am 'Updated badge " + path + "'");
+    await exec.exec("git commit -m \"Updated badge\"");
     await exec.exec("git push");
 
     // Return path to badge
