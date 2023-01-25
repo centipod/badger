@@ -4120,7 +4120,12 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
+// ESM COMPAT FLAG
 __nccwpck_require__.r(__webpack_exports__);
+
+;// CONCATENATED MODULE: external "node:fs/promises"
+const promises_namespaceObject = require("node:fs/promises");
+;// CONCATENATED MODULE: ./main.ts
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -4130,6 +4135,7 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+
 (() => __awaiter(void 0, void 0, void 0, function* () {
     // Imports
     const core = __nccwpck_require__(186);
@@ -4162,6 +4168,7 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         .replace(/@VALUE@/g, value);
     // Write to file
     console.log("Storing badge..");
+    yield (0,promises_namespaceObject.mkdir)(directory, { recursive: true });
     const name = label.replace(/[^A-Za-z0-9]+/g, '').toLowerCase();
     const path = directory + '/' + name + '.svg';
     fs.writeFileSync(path, svg);
@@ -4176,7 +4183,6 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
     console.log("Completed.");
     core.setOutput('location', path);
 }))();
-
 
 })();
 

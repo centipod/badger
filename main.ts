@@ -37,6 +37,7 @@ import { mkdir } from 'node:fs/promises';
 
     // Write to file
     console.log("Storing badge..")
+    await mkdir(directory, { recursive: true });
     const name = label.replace(/[^A-Za-z0-9]+/g, '').toLowerCase();
     const path = directory + '/' + name + '.svg';
     fs.writeFileSync(path, svg);
