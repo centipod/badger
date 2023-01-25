@@ -43,6 +43,14 @@ import { mkdir } from 'node:fs/promises';
     if (debug) console.log("Storing badge with timestamp " + time, path);
     fs.writeFileSync(path, content);
 
+    // Add and commit badge
+    await exec.exec("git config user.email \"badger@centipod.io\"");
+    await exec.exec("git config user.name \"badger\"");
+    await exec.exec("git add " + path);
+    await exec.exec("git commit -m \"Updated badge\"");
+    await exec.exec("git push");
+
+
     // Return path to badge
     console.log("To use your badge: ![](" + path + ")")
     core.setOutput('location', path);
