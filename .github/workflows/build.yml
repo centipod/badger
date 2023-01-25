@@ -26,6 +26,7 @@ jobs:
       - name: Generate green badge
         uses: centipod/badger@master
         with:
+          branch: ${{ github.base_ref }}
           directory: .badges
           label: 'Version'
           value: 'v1.0'
@@ -34,6 +35,7 @@ jobs:
       - name: Generate red badge
         uses: centipod/badger@master
         with:
+          branch: ${{ github.base_ref }}
           directory: .badges
           label: 'Release'
           value: 'failed'
