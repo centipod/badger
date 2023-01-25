@@ -8,6 +8,14 @@ inputs:
     required: false
     default: master
 
+  username:
+    description: "The GitHub username to use when committing the badges."
+    required: true
+
+  email:
+    description: "The GitHub user email address to use when committing the badges."
+    required: true
+
   directory:
     description: "The directory in your repository where badges are stored."
     required: false

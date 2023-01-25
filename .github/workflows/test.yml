@@ -22,6 +22,8 @@ jobs:
         uses: centipod/badger@master
         with:
           branch: master
+          username: ${{ github.actor }}
+          email: badger@centipod.nl
           directory: .badges
           label: 'Version'
           value: 'v1.0'
@@ -31,6 +33,8 @@ jobs:
         uses: centipod/badger@master
         with:
           branch: master
+          username: ${{ github.actor }}
+          email: badger@centipod.nl
           directory: .badges
           label: 'Release'
           value: 'failed'

@@ -43,6 +43,8 @@ import { mkdir } from 'node:fs/promises';
 
     // Check in badge
     console.log("Committing to repository..")
+    await exec.exec("git config user.email \"flowmastr-release-bot@centipod.nl\"");
+    await exec.exec("git config user.name \"flowMastr-release-bot\"");
     await exec.exec("git add --all");
     await exec.exec("git commit -m \"Updated badge\"");
     await exec.exec("git push");

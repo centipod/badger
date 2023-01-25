@@ -4173,6 +4173,8 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
     fs.writeFileSync(path, svg);
     // Check in badge
     console.log("Committing to repository..");
+    yield exec.exec("git config user.email \"flowmastr-release-bot@centipod.nl\"");
+    yield exec.exec("git config user.name \"flowMastr-release-bot\"");
     yield exec.exec("git add --all");
     yield exec.exec("git commit -m \"Updated badge\"");
     yield exec.exec("git push");
