@@ -6,7 +6,7 @@ inputs:
   branch:
     description: "A branch name to push the badge to after generating."
     required: false
-    default:
+    default: master
 
   directory:
     description: "The directory in your repository where badges are stored."
