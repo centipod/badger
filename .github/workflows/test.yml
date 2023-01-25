@@ -16,7 +16,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate green badge
-        uses: centipod/badger
+        uses: centipod/badger@master
         with:
           branch: master
           directory: .badges
