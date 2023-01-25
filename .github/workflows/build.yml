@@ -1,10 +1,10 @@
-name: Test badger
+name: Build and test badger
 
 on:
   pull_request:
     branches:
-      develop
-      master
+    - develop
+    - master
   workflow_dispatch:
 
 jobs:

@@ -4172,6 +4172,12 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
     if (debug)
         console.log("Storing badge with timestamp " + time, path);
     fs.writeFileSync(path, content);
+    // Add and commit badge
+    yield exec.exec("git config user.email \"badger@centipod.io\"");
+    yield exec.exec("git config user.name \"badger\"");
+    yield exec.exec("git add " + path);
+    yield exec.exec("git commit -m \"Updated badge\"");
+    yield exec.exec("git push");
     // Return path to badge
     console.log("To use your badge: ![](" + path + ")");
     core.setOutput('location', path);
